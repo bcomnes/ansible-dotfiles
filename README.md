@@ -11,3 +11,13 @@ Runs the `site.yml` playbook with the `--check` and `--diff` flags
 ## make install
 
 Runs the `site.yml` playbook and actually provisions the hosts in the inventory file
+
+
+## Notes:
+
+- [Ansible Docs](http://docs.ansible.com/)
+- [vwall/ansible-dotfiles](https://github.com/vwall/ansible-dotfiles)
+- [Automating Your Development Environment With Ansible](http://www.nickhammond.com/automating-development-environment-ansible)
+- [My First 5 Minutes on a Server (with Ansible)](http://practicalops.com/my-first-5-minutes-on-a-server-with-ansible.html)
+
+So simple!  Good simple examples that do something from the get go!
