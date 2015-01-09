@@ -1,0 +1,4 @@
+- name: link taskrc file into place
+  file: src={{ item }} dest={{ ansible_env.HOME }}/.{{ item | basename }} state=link
+  with_fileglob:
+    - ./*

@@ -1,0 +1,8 @@
+---
+- hosts: local
+# gather_facts: false
+  roles:
+    - brew
+    - dotfiles
+    - vim
+    - taskrc

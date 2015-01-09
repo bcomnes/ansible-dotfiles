@@ -1,0 +1,22 @@
+---
+- name: Install libraries with homebrew
+  homebrew:
+    name={{ item }}
+    state=present
+    update_homebrew=yes
+  with_items:
+    - git
+    - go
+    - node
+    - ruby
+    - stow
+
+- name: Install python bottles
+  homebrew:
+    name={{ item }}
+    state=present
+    update_homebrew=yes
+    install_options=force-bottle
+  with_items:
+    - python
+    - python3

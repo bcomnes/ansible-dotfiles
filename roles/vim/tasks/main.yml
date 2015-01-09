@@ -1,0 +1,21 @@
+ # Ensure our vim directory exists
+- name: ensure .vim directory exists
+  file:
+    dest={{ ansible_env.HOME }}/.vim/{{ item }}
+    state=directory
+  with_items:
+    - backup
+    - colors
+    - tmp
+    - undo
+    - view
+
+- name: link vimrc file into place
+  file: src={{ item }} dest={{ ansible_env.HOME }}/.{{ item | basename }} state=link
+  with_fileglob:
+    - ./*
+
+- name: link .vim files
+  file: src={{ item }} dest={{ ansible_env.HOME }}/.vim/colors/{{ item | basename }} state=link
+  with_fileglob:
+    - ./*

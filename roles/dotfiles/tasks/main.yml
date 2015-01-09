@@ -1,0 +1,10 @@
+---
+- name: symlink dotfiles
+  file: src={{ item }} dest={{ ansible_env.HOME }}/.{{ item | basename }} state=link
+  with_fileglob:
+    - ./*
+
+- name: symlink htop files
+  file: src={{ item }} dest={{ ansible_env.HOME }}/.config/htop/{{ item | basename }} state=link
+  with_fileglob:
+    - ./config/htop/htoprc
