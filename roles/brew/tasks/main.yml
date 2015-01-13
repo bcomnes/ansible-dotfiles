@@ -1,22 +1,27 @@
 ---
-- name: Install libraries with homebrew
+- name: Install homebrew taps
+  homebrew_tap: tap={{ item }} state=present
+  with_items:
+    - caskroom/cask
+
+- name: Update homebrew
+  homebrew: update_homebrew=yes
+
+- name: Install dev software with homebrew
   homebrew:
     name={{ item }}
     state=present
-    update_homebrew=yes
   with_items:
     - git
     - go
     - node
     - ruby
     - stow
-
-- name: Install python bottles
-  homebrew:
-    name={{ item }}
-    state=present
-    update_homebrew=yes
-    install_options=force-bottle
-  with_items:
     - python
     - python3
+    - brew-cask
+
+- name: Install cask software
+  homebrew_cask: name={{ item }} state=present
+  with_items:
+    - vagrant
