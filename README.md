@@ -3,6 +3,14 @@ ansible-dotfiles
 
 Configs and settings managed by ansible
 
+## Bootstrapping locally
+
+- ???
+- Install Xcode/CLI Tools
+- Install [Homebrew](http://brew.sh): 
+  - `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+- `brew install ansible`
+- ???
 
 ## make check
 
