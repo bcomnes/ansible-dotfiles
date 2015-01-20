@@ -7,6 +7,9 @@ install:
 dotfiles:
 	ansible-playbook -i hosts site.yml -c local --tags dotfiles
 
+brew:
+	ansible-playbook -i hosts site.yml -c local --tags brew
+
 vim:
 	ansible-playbook -i hosts site.yml -c local --tags vim
 

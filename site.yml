@@ -2,7 +2,7 @@
 - hosts: local
   gather_facts: true
   roles:
-    - brew
-    - dotfiles
-    - vim
-    - taskrc
+    - { role: dotfiles, tags: ["dotfiles"] }
+    - { role: vim, tags: ["dotfiles"] }
+    - { role: taskrc, tags: ["dotfiles"] }
+    - { role: brew, tags: ["brew"] }

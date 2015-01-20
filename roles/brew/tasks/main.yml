@@ -3,15 +3,30 @@
   homebrew_tap: tap={{ item }} state=present
   with_items:
     - caskroom/cask
+    - caskroom/versions
+    - smockle/iojs
 
-- name: Update homebrew
+- name: Check time of last update
+  command: git log -1 --format="%ct" HEAD
+  args:
+    chdir: /usr/local
+  register: timestamp
+  always_run: yes
+
+- name: stat HOMEBREW_LIBRARY
+  stat: path=/usr/local/Library
+  register: library
+
+- name: conditionally update homebrew
   homebrew: update_homebrew=yes
+  when: ansible_date_time.epoch|int - timestamp.stdout|int > 60 * 60 * 24
 
 - name: Install dev software with homebrew
   homebrew:
     name={{ item }}
     state=present
   with_items:
+    - brew-cask
     - git
     - go
     - node
@@ -19,10 +34,55 @@
     - stow
     - python
     - python3
-    - brew-cask
 
 - name: Install cask software
   homebrew_cask: name={{ item }} state=present
   with_items:
     - vagrant
     - virtualbox
+    - sublime-text3
+    - 1password
+    - airfoil
+    - appcleaner
+    - arduino-beta
+   # - flash-player
+    - atom
+    - bonjour-browser
+   # - brackets
+    - caffeine
+   # - daisydisk
+    - dropbox
+    - firefox
+    - google-chrome
+    - flickr-uploadr
+    - flux
+    - fritzing
+    - rowanj-gitx
+    - imageoptim
+   # - jumpcut
+   # - linein
+   # - magicprefs
+    - moom
+   # - nicecast
+    - mou
+   # - mysqlworkbench
+   # - omnifocus
+    - omnigraffle
+    - omnioutliner
+    - omniplan
+    - piezo
+    - processing
+   # - screenflow
+    - bittorrent-sync
+    - opendns-updater
+    - skim
+    - the-unarchiver
+    - things
+    - textmate
+    - time-sink
+   # - tower
+    - transmission
+    - transmit
+   # - panic-unison
+    - vlc
+    - xld
