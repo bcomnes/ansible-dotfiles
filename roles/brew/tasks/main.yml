@@ -49,7 +49,7 @@
     - atom
     - bonjour-browser
    # - brackets
-    - caffeine
+    - keepingyouawake
    # - daisydisk
     - dropbox
     - firefox
@@ -86,3 +86,5 @@
    # - panic-unison
     - vlc
     - xld
+    - steam
+
