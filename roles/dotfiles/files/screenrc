@@ -1,12 +1,12 @@
+# To reload .screenr Press Ctrl - a : source ~/.screenrc
+
 # Sets the screen to use login shells
 shell -$SHELL
-
-# To reload .screenr Press Ctrl - a : source ~/.screenrc
 
 # Turn of startup message
 startup_message off
 
-# This helps prevent the screen from fucking up, aparently.
+# This helps prevent the screen from accidental freezing
 defflow off
 defnonblock on
 
@@ -20,6 +20,7 @@ defnonblock on
 # terminfo and termcap for nice 256 color terminal
 # allow bold colors - necessary for some reason
 attrcolor b ".I"
+
 # tell screen how to set colors. AB = background, AF=foreground
 termcapinfo xterm-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 

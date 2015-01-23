@@ -45,7 +45,8 @@
     - airfoil
     - appcleaner
     - arduino-beta
-   # - flash-player
+    - flash
+    - java
     - atom
     - bonjour-browser
    # - brackets
@@ -59,7 +60,6 @@
     - fritzing
     - rowanj-gitx
     - imageoptim
-   # - jumpcut
    # - linein
    # - magicprefs
     - moom
@@ -87,4 +87,5 @@
     - vlc
     - xld
     - steam
-
+    - mactracker
+    - inkscape

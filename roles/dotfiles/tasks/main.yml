@@ -1,10 +1,19 @@
 ---
+- name: include env specific vars
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+    - "{{ default.yml }}"
+
 - name: symlink dotfiles
   file: src={{ item }} dest={{ ansible_env.HOME }}/.{{ item | basename }} state=link
   with_fileglob:
     - ./*
 
 - name: symlink htop files
-  file: src={{ item }} dest={{ ansible_env.HOME }}/.config/htop/{{ item | basename }} state=link
+  # htop_prefix varies from os family to family, namely darwin
+  file: src={{ item }} dest={{ ansible_env.HOME }}/{{ htop_prefix }}{{ item | basename }} state=link
   with_fileglob:
     - ./config/htop/htoprc
+
