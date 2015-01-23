@@ -13,9 +13,9 @@
 - name: link vimrc file into place
   file: src={{ item }} dest={{ ansible_env.HOME }}/.{{ item | basename }} state=link
   with_fileglob:
-    - ./*
+    - ./vimrc
 
-- name: link .vim files
+- name: link color files
   file: src={{ item }} dest={{ ansible_env.HOME }}/.vim/colors/{{ item | basename }} state=link
   with_fileglob:
-    - ./*
+    - ./vim/colors/*
