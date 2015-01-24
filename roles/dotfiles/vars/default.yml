@@ -1,2 +1,2 @@
 ---
-htop_prefix: ".config/htop/"
+htoprc_prefix: ".config/htop/"

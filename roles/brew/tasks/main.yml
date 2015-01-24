@@ -30,10 +30,48 @@
     - git
     - go
     - node
-    - ruby
     - stow
     - python
     - python3
+
+- name: install ruby
+  homebrew:
+    name=ruby
+    state=present
+  with_items:
+    - ruby
+
+- name: set up ruby paths
+  lineinfile: dest={{ ansible_env.HOME }}/.env
+    line="RUBY_PATH=$(brew --prefix)/opt/ruby/bin ;
+      if [ -d $RUBY_PATH ]; then
+      export PATH=$RUBY_PATH:$PATH ;
+      else
+      if which rbenv > /dev/null ;
+      then
+      eval $(rbenv init -);
+      fi ;
+      fi"
+
+- name: install go
+  homebrew:
+    name=go
+    state=present
+
+- name: set up GOPATH
+  # Go Path (http://golang.org/doc/code.html#GOPATH)
+  lineinfile: dest={{ ansible_env.HOME }}/.env
+    line="if [ -d $HOME/.go ]; then
+      export GOPATH=$HOME/.go ;
+      export PATH=$PATH:$GOPATH/bin ;
+      fi"
+
+- name: set up GOROOT bin path
+  lineinfile: dest={{ ansible_env.HOME }}/.env
+    line="if [ -d $(brew --prefix)/opt/go/libexec/bin ]; then
+      export PATH=$PATH:$(brew --prefix)/opt/go/libexec/bin ;
+      fi"
+
 
 - name: Install cask software
   homebrew_cask: name={{ item }} state=present
@@ -49,7 +87,6 @@
     - java
     - atom
     - bonjour-browser
-   # - brackets
     - keepingyouawake
    # - daisydisk
     - dropbox
@@ -60,19 +97,17 @@
     - fritzing
     - rowanj-gitx
     - imageoptim
-   # - linein
-   # - magicprefs
+    - linein
+    - magicprefs
     - moom
-   # - nicecast
+    - nicecast
     - mou
-   # - mysqlworkbench
-   # - omnifocus
+    - mysqlworkbench
     - omnigraffle
     - omnioutliner
     - omniplan
     - piezo
     - processing
-   # - screenflow
     - bittorrent-sync
     - opendns-updater
     - skim
@@ -83,9 +118,13 @@
    # - tower
     - transmission
     - transmit
-   # - panic-unison
     - vlc
     - xld
     - steam
     - mactracker
     - inkscape
+    - keepassx
+    - kismac
+    - screenflow
+    # Sudo
+    - xquartz
