@@ -1,4 +1,9 @@
  # Ensure our vim directory exists
+- name: Install dev software with homebrew
+  homebrew:
+    name=vim
+    state=present
+
 - name: ensure .vim directory exists
   file:
     dest={{ ansible_env.HOME }}/.vim/{{ item }}

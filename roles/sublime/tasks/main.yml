@@ -1,0 +1,21 @@
+---
+- name: install sublime-text3
+  homebrew_cask:
+    name=sublime-text3
+    state=present
+
+- name: set up settings repo
+  # TODO: Make this repo not private: https://github.com/LaTeXing/LaTeXing/issues/79
+  git:
+    repo=git@github.com:bcomnes/sublime-text-settings.git
+    dest="{{ ansible_env.HOME }}/Library/Application Support/Sublime Text 3"
+    update=yes
+    # TODO: set update to no, and clone to true in 1.9
+
+- name: install package control
+  file:
+    path="{{ ansible_env.HOME }}/Library/Application Support/Sublime Text 3/Installed Packages/"
+    state=directory
+- get_url:
+    url=https://packagecontrol.io/Package%20Control.sublime-package
+    dest="{{ ansible_env.HOME }}/Library/Application Support/Sublime Text 3/Installed Packages/Package Control.sublime-package"

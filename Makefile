@@ -10,6 +10,9 @@ dotfiles:
 brew:
 	ansible-playbook -i hosts site.yml -c local --tags brew
 
+sublime:
+	ansible-playbook -i hosts site.yml -c local --tags sublime
+
 vim:
 	ansible-playbook -i hosts site.yml -c local --tags vim
 
