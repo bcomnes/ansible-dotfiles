@@ -19,3 +19,4 @@
 
 - name: reset .env base file
   template: src=env.j2 dest={{ ansible_env.HOME }}/.env
+

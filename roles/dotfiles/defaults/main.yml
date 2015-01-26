@@ -1,2 +1,4 @@
 ---
+# This be all confusing.
+# See https://github.com/ansible/ansible/issues/10077
 #htoprc_prefix: ".config/htop/"

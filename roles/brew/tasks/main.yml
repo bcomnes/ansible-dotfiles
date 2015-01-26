@@ -4,7 +4,6 @@
   with_items:
     - caskroom/cask
     - caskroom/versions
-    - smockle/iojs
 
 - name: Check time of last update
   command: git log -1 --format="%ct" HEAD
@@ -28,9 +27,7 @@
   with_items:
     - brew-cask
     - git
-    - go
     - node
-    - stow
     - python
     - python3
 
@@ -45,13 +42,13 @@
   lineinfile: dest={{ ansible_env.HOME }}/.env
     line="RUBY_PATH=$(brew --prefix)/opt/ruby/bin ;
       if [ -d $RUBY_PATH ]; then
-      export PATH=$RUBY_PATH:$PATH ;
-      else
-      if which rbenv > /dev/null ;
-      then
-      eval $(rbenv init -);
-      fi ;
+        export PATH=$RUBY_PATH:$PATH ;
+      else if which rbenv > /dev/null ; then
+        eval $(rbenv init -);
+        fi ;
       fi"
+  tags:
+    - dotfiles
 
 - name: install go
   homebrew:
@@ -64,20 +61,22 @@
     line="if [ -d $HOME/.go ]; then
       export GOPATH=$HOME/.go ;
       export PATH=$PATH:$GOPATH/bin ;
-      fi"
+    fi"
+  tags:
+    - dotfiles
 
 - name: set up GOROOT bin path
   lineinfile: dest={{ ansible_env.HOME }}/.env
     line="if [ -d $(brew --prefix)/opt/go/libexec/bin ]; then
       export PATH=$PATH:$(brew --prefix)/opt/go/libexec/bin ;
-      fi"
+    fi"
+  tags:
+    - dotfiles
 
 
 - name: Install cask software
   homebrew_cask: name={{ item }} state=present
   with_items:
-    - vagrant
-    - virtualbox
     - sublime-text3
     - 1password
     - airfoil
@@ -115,7 +114,6 @@
     - things
     - textmate
     - time-sink
-   # - tower
     - transmission
     - transmit
     - vlc
@@ -126,5 +124,7 @@
     - keepassx
     - kismac
     - screenflow
-    # Sudo
+    # Requires Sudo
     - xquartz
+    - virtualbox
+    - vagrant
