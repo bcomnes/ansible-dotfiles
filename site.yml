@@ -6,5 +6,3 @@
     - { role: brew, tags: ["brew"] }
     - { role: sublime, tags: ["dotfiles"]}
     - { role: vim, tags: ["dotfiles"] }
-    - { role: taskrc, tags: ["dotfiles"] }
-

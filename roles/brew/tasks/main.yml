@@ -31,6 +31,10 @@
     - python
     - python3
 
+- name: check for existing ~/.env file
+  stat: path={{ ansible_env.HOME }}/.env follow=true
+  register: env_file
+
 - name: install ruby
   homebrew:
     name=ruby
@@ -47,6 +51,7 @@
         eval $(rbenv init -);
         fi ;
       fi"
+  when: not env_file.stat.exists
   tags:
     - dotfiles
 
@@ -64,6 +69,7 @@
     fi"
   tags:
     - dotfiles
+  when: not env_file.stat.exists
 
 - name: set up GOROOT bin path
   lineinfile: dest={{ ansible_env.HOME }}/.env
@@ -72,3 +78,4 @@
     fi"
   tags:
     - dotfiles
+  when: not env_file.stat.exists

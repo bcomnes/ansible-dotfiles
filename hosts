@@ -1,2 +1,33 @@
 [local]
-  bret-mbr.local     ansible_connection=local
+bret-mbr.local ansible_connection=local  foo=bar
+
+[personal]
+bret-mbr.local
+bret-win7.local
+
+[arc-web]
+rc.pdx.edu
+
+[arc-macs]
+# arc-mac-03
+host-135-42.dhcp.pdx.edu
+
+[arc-compute]
+circe.rc.pdx.edu
+hecate.rc.pdx.edu
+
+[arc-cluster]
+gravel.rc.pdx.edu
+hydra.rc.pdx.edu
+
+[arc:children]
+arc-web
+arc-macs
+arc-compute
+arc-cluster
+
+[arc:vars]
+ansible_ssh_user=bcomnes
+
+[psu]
+odin.pdx.edu
