@@ -11,6 +11,7 @@
     repo=git@github.com:bcomnes/ansible-dotfiles.git
     dest="{{ ansible_env.HOME }}/.dotfiles"
     update=yes
+    accept_hostkey=yes
     # TODO: set update to no, and clone to true in 1.9
 
 - name: symlink dotfiles
@@ -26,6 +27,7 @@
     src={{ ansible_env.HOME }}/.dotfiles/roles/dotfiles/files/ssh/{{ item | basename }}
     dest={{ ansible_env.HOME }}/.ssh/{{ item | basename }}
     state=link
+    force=true
   with_fileglob:
     ./ssh/*
 
@@ -42,7 +44,9 @@
   # htop_prefix varies from os family to family, namely darwin
   file:
     src={{ ansible_env.HOME }}/.dotfiles/roles/dotfiles/files/config/htop/{{ item | basename }}
-    dest={{ ansible_env.HOME }}/{{ htoprc_prefix }}{{ item | basename }} state=link
+    dest={{ ansible_env.HOME }}/{{ htoprc_prefix }}{{ item | basename }}
+    state=link
+    force=true
   with_fileglob:
     - ./config/htop/htoprc
 

@@ -3,3 +3,6 @@
   gather_facts: true
   roles:
     - { role: dotfiles, tags: ["dotfiles"] }
+    - { role: vim, tags: ["dotfiles"] }
+    - { role: brew, tags: ["brew"] }
+
