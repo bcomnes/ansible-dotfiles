@@ -20,4 +20,4 @@ facts:
 	ansible all -i hosts -m setup -c local
 
 arc:
-	ansible-playbook -i hosts arc-macs.yml --check --diff
+	ansible-playbook -i hosts arc-macs.yml --tags dotfiles -vvvv
