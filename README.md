@@ -1,13 +1,13 @@
 ansible-dotfiles
 ================
 
-Configs and settings managed by ansible
+Configs and settings managed by ansible.  Dotfiles actually managed here: [bcomnes/dotfiles](/bcomnes/dotfiles)
 
 ## Bootstrapping locally
 
 - ???
 - Install Xcode/CLI Tools
-- Install [Homebrew](http://brew.sh): 
+- Install [Homebrew](http://brew.sh):
   - `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 - `brew install ansible`
 - ???

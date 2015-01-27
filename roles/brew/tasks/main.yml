@@ -51,7 +51,7 @@
         eval $(rbenv init -);
         fi ;
       fi"
-  when: not env_file.stat.exists
+  when: env_file.stat.exists
   tags:
     - dotfiles
 
@@ -69,7 +69,7 @@
     fi"
   tags:
     - dotfiles
-  when: not env_file.stat.exists
+  when: env_file.stat.exists
 
 - name: set up GOROOT bin path
   lineinfile: dest={{ ansible_env.HOME }}/.env
@@ -78,4 +78,4 @@
     fi"
   tags:
     - dotfiles
-  when: not env_file.stat.exists
+  when: env_file.stat.exists

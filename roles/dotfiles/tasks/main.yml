@@ -6,49 +6,70 @@
     - "{{ ansible_os_family }}.yml"
     - "{{ default.yml }}"
 
+- debug: var={{ dotfiles_path }}
+
 - name: ensure ~/.dotfiles repo exists
   git:
-    repo=git@github.com:bcomnes/ansible-dotfiles.git
+    repo=git@github.com:bcomnes/dotfiles.git
     dest="{{ ansible_env.HOME }}/.dotfiles"
-    update=yes
+    update=no
     accept_hostkey=yes
     # TODO: set update to no, and clone to true in 1.9
 
 - name: symlink dotfiles
   file:
-    src={{ ansible_env.HOME }}/.dotfiles/roles/dotfiles/files/{{ item | basename }}
+    src={{ dotfiles_path }}/dotfiles/{{ item | basename }}
     dest={{ ansible_env.HOME }}/.{{ item | basename }}
     state=link
   with_fileglob:
-    - ./*
+    - "{{ dotfiles_path }}/dotfiles/*"
 
 - name: symlink ssh files
   file:
-    src={{ ansible_env.HOME }}/.dotfiles/roles/dotfiles/files/ssh/{{ item | basename }}
+    src={{ dotfiles_path }}/ssh/{{ item | basename }}
     dest={{ ansible_env.HOME }}/.ssh/{{ item | basename }}
     state=link
     force=true
   with_fileglob:
-    ./ssh/*
+    - "{{ dotfiles_path }}/ssh/*"
 
 - name: generate authorized_keys
   authorized_key:
     user={{ ansible_ssh_user }}
     key="{{ item }}"
   with_file:
-    - ./ssh/id_rsa.pub/bret-mbr.local.pub
-    - ./ssh/id_rsa.pub/bret-win7.local.pub
-    - ./ssh/id_rsa.pub/arc-mac-04.local.pub
+    - ./bret-mbr.local.pub
+    - ./bret-win7.local.pub
+    - ./arc-mac-04.local.pub
+
+- name: ensure .vim directories exists
+  file:
+    dest={{ ansible_env.HOME }}/.vim/{{ item }}
+    state=directory
+  with_items:
+    - backup
+    - colors
+    - tmp
+    - undo
+    - view
+
+- name: link color files
+  file:
+    src={{ item }}
+    dest={{ ansible_env.HOME }}/.vim/colors/{{ item | basename }}
+    state=link
+  with_fileglob:
+    - "{{ dotfiles_path }}/vim/colors/*"
 
 - name: symlink htop files
   # htop_prefix varies from os family to family, namely darwin
   file:
-    src={{ ansible_env.HOME }}/.dotfiles/roles/dotfiles/files/config/htop/{{ item | basename }}
+    src={{ dotfiles_path }}/config/htop/{{ item | basename }}
     dest={{ ansible_env.HOME }}/{{ htoprc_prefix }}{{ item | basename }}
     state=link
     force=true
   with_fileglob:
-    - ./config/htop/htoprc
+    - "{{ dotfiles_path }}/config/htop/htoprc"
 
 - name: check for existing ~/.env file
   stat: path={{ ansible_env.HOME }}/.env follow=true

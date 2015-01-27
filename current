@@ -1,0 +1,21 @@
+LSRC on MBR
+
+/Users/bret/.config/htop/htoprc:/Users/bret/.dotfiles/config/htop/htoprc
+/Users/bret/.gitconfig:/Users/bret/.dotfiles/gitconfig
+/Users/bret/.rcrc:/Users/bret/.dotfiles/rcrc
+/Users/bret/.screenrc:/Users/bret/.dotfiles/screenrc
+/Users/bret/.vim/backup/keep:/Users/bret/.dotfiles/vim/backup/keep
+/Users/bret/.vim/colors/wombat256mod.vim:/Users/bret/.dotfiles/vim/colors/wombat256mod.vim
+/Users/bret/.vim/colors/zenburn.vim:/Users/bret/.dotfiles/vim/colors/zenburn.vim
+/Users/bret/.vim/tmp/keep:/Users/bret/.dotfiles/vim/tmp/keep
+/Users/bret/.vim/undo/keep:/Users/bret/.dotfiles/vim/undo/keep
+/Users/bret/.vim/view/keep:/Users/bret/.dotfiles/vim/view/keep
+/Users/bret/.vimrc:/Users/bret/.dotfiles/vimrc
+/Users/bret/.bash_aliases:/Users/bret/.dotfiles/host-Bret-MBR.local/bash_aliases
+/Users/bret/.bash_profile:/Users/bret/.dotfiles/host-Bret-MBR.local/bash_profile
+/Users/bret/.env:/Users/bret/.dotfiles/host-Bret-MBR.local/env
+/Users/bret/.taskrc:/Users/bret/.dotfiles/host-Bret-MBR.local/taskrc
+/Users/bret/.ssh/authorized_keys:/Users/bret/.secrc/ssh/authorized_keys
+/Users/bret/.ssh/config:/Users/bret/.secrc/ssh/config
+/Users/bret/.netrc:/Users/bret/.secrc/host-Bret-MBR.local/netrc
+/Users/bret/.ssh/known_hosts:/Users/bret/.secrc/host-Bret-MBR.local/ssh/known_hosts
