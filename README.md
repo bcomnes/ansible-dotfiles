@@ -1,7 +1,7 @@
 ansible-dotfiles
 ================
 
-Configs and settings managed by ansible.  Dotfiles actually managed here: [bcomnes/dotfiles](/bcomnes/dotfiles)
+Configs and settings managed by ansible.  Dotfiles actually managed here: [bcomnes/dotfiles](bcomnes/dotfiles)
 
 ## Bootstrapping locally
 
