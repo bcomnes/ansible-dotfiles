@@ -4,6 +4,7 @@
   with_items:
     - caskroom/cask
     - caskroom/versions
+    - homebrew/versions
 
 - name: Check time of last update
   command: git log -1 --format="%ct" HEAD
@@ -30,6 +31,7 @@
     - node
     - python
     - python3
+    - vim
 
 - name: check for existing ~/.env file
   stat: path={{ ansible_env.HOME }}/.env follow=true
@@ -79,3 +81,14 @@
   tags:
     - dotfiles
   when: env_file.stat.exists
+
+- name: install bash_completion
+  homebrew:
+    name=go
+    state=present
+
+- name: enable bash_completion
+  lineinfile: dest={{ ansible_env.HOME }}/.bash_env
+    line="if [ -f $(brew --prefix)/etc/bash_completion ]; then
+      source $(brew --prefix)/etc/bash_completion ;
+    fi"

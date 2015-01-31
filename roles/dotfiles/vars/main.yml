@@ -1,2 +1,3 @@
 ---
 # This is autoloaded and overrides defaults/main.yml
+dotfiles_path: "{{ ansible_env.HOME }}/.dotfiles"

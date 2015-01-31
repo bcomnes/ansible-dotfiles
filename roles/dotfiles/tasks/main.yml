@@ -6,32 +6,45 @@
     - "{{ ansible_os_family }}.yml"
     - "{{ default.yml }}"
 
-- debug: var={{ dotfiles_path }}
-
 - name: ensure ~/.dotfiles repo exists
   git:
     repo=git@github.com:bcomnes/dotfiles.git
-    dest="{{ ansible_env.HOME }}/.dotfiles"
-    update=no
+    dest={{ dotfiles_path }}
+    update=yes
     accept_hostkey=yes
     # TODO: set update to no, and clone to true in 1.9
 
+- name: list dotfiles
+  shell: "find $PWD -maxdepth 1 -type f"
+  args:
+    chdir: "{{ dotfiles_path }}/dotfiles/"
+  register: dotfiles
+  always_run: yes
+
+- debug: var=dotfiles.stdout_lines
+
+- debug: var=dotfiles_path
 - name: symlink dotfiles
   file:
-    src={{ dotfiles_path }}/dotfiles/{{ item | basename }}
+    src={{ item }}
     dest={{ ansible_env.HOME }}/.{{ item | basename }}
     state=link
-  with_fileglob:
-    - "{{ dotfiles_path }}/dotfiles/*"
+  with_items: dotfiles.stdout_lines
+
+- name: list sshfiles
+  shell: "find $PWD -maxdepth 1 -type f"
+  args:
+    chdir: "{{ dotfiles_path }}/ssh/"
+  register: sshfiles
+  always_run: yes
 
 - name: symlink ssh files
   file:
-    src={{ dotfiles_path }}/ssh/{{ item | basename }}
-    dest={{ ansible_env.HOME }}/.ssh/{{ item | basename }}
+    src="{{ dotfiles_path }}/ssh/{{ item | basename }}"
+    dest="{{ ansible_env.HOME }}/.ssh/{{ item | basename }}"
     state=link
     force=true
-  with_fileglob:
-    - "{{ dotfiles_path }}/ssh/*"
+  with_items: sshfiles.stdout_lines
 
 - name: generate authorized_keys
   authorized_key:
@@ -53,13 +66,26 @@
     - undo
     - view
 
+- name: list vimcolorfiles
+  shell: "find $PWD -maxdepth 1 -type f"
+  args:
+    chdir: "{{ dotfiles_path }}/vim/colors/"
+  register: vimcolorfiles
+  always_run: yes
+
 - name: link color files
   file:
     src={{ item }}
     dest={{ ansible_env.HOME }}/.vim/colors/{{ item | basename }}
     state=link
-  with_fileglob:
-    - "{{ dotfiles_path }}/vim/colors/*"
+  with_items: vimcolorfiles.stdout_lines
+
+- name: list htopfiles
+  shell: "find $PWD -maxdepth 1 -type f"
+  args:
+    chdir: "{{ dotfiles_path }}/config/htop/"
+  register: htopfiles
+  always_run: yes
 
 - name: symlink htop files
   # htop_prefix varies from os family to family, namely darwin
@@ -68,8 +94,7 @@
     dest={{ ansible_env.HOME }}/{{ htoprc_prefix }}{{ item | basename }}
     state=link
     force=true
-  with_fileglob:
-    - "{{ dotfiles_path }}/config/htop/htoprc"
+  with_items: htopfiles.stdout_lines
 
 - name: check for existing ~/.env file
   stat: path={{ ansible_env.HOME }}/.env follow=true
@@ -78,3 +103,11 @@
 - name: reset .env base file
   template: src=env.j2 dest={{ ansible_env.HOME }}/.env
   when: not env_file.stat.exists
+
+- name: check for existing ~/.bash_env file
+  stat: path={{ ansible_env.HOME }}/.bash_env follow=true
+  register: bash_env_file
+
+- name: reset .bash_env base file
+  template: src=env.j2 dest={{ ansible_env.HOME }}/.bash_env
+  when: not bash_env_file.stat.exists
