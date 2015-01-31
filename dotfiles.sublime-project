@@ -3,11 +3,11 @@
 	[
 		{
 			"follow_symlinks": true,
-			"path": ""
+			"path": "/Users/bret/.dotfiles"
 		},
 		{
 			"follow_symlinks": true,
-			"path": "/Users/bret/.dotfiles"
+			"path": "."
 		}
 	]
 }
