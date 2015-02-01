@@ -5,6 +5,7 @@
     - caskroom/cask
     - caskroom/versions
     - homebrew/versions
+    - homebrew/dupes
 
 - name: Check time of last update
   command: git log -1 --format="%ct" HEAD

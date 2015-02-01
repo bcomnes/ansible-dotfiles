@@ -10,7 +10,7 @@
   git:
     repo=git@github.com:bcomnes/dotfiles.git
     dest={{ dotfiles_path }}
-    update=yes
+    update=no
     accept_hostkey=yes
     # TODO: set update to no, and clone to true in 1.9
 
