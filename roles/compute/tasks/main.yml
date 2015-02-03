@@ -1,0 +1,21 @@
+---
+- name: check for existing ~/.env file
+  stat: path={{ ansible_env.HOME }}/.env follow=true
+  register: env_file
+
+- name: Source global definitions
+  lineinfile: dest={{ ansible_env.HOME }}/.env
+    line="if [ -f /etc/bashrc ]; then
+        source /etc/bashrc ;
+      fi"
+  when: env_file.stat.exists
+
+- name: enable openmpi
+  lineinfile: dest={{ ansible_env.HOME }}/.env
+    line="module load openmpi-x86_64"
+  when: env_file.stat.exists
+
+- name: enable mpich2 quick access
+  lineinfile: dest={{ ansible_env.HOME }}/.env
+    line="#module load mpich2-x86_64"
+  when: env_file.stat.exists

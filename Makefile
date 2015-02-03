@@ -21,3 +21,9 @@ facts:
 
 arc:
 	ansible-playbook -i hosts arc-macs.yml
+
+compute:
+	ansible-playbook -i hosts arc-compute.yml
+
+check-compute:
+	ansible-playbook -i hosts arc-compute.yml --check --diff

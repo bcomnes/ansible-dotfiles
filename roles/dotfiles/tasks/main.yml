@@ -1,10 +1,11 @@
 ---
+- debug: var=ansible_distribution
 - name: include env specific vars
   include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution }}.yml"
     - "{{ ansible_os_family }}.yml"
-    - "{{ default.yml }}"
+    - "default.yml"
 
 - name: ensure ~/.dotfiles repo exists
   git:
@@ -20,6 +21,7 @@
     chdir: "{{ dotfiles_path }}/dotfiles/"
   register: dotfiles
   always_run: yes
+  changed_when: "dotfiles.rc != 0"
 
 - debug: var=dotfiles.stdout_lines
 
@@ -37,6 +39,7 @@
     chdir: "{{ dotfiles_path }}/ssh/"
   register: sshfiles
   always_run: yes
+  changed_when: "sshfiles.rc != 0"
 
 - name: symlink ssh files
   file:
@@ -72,6 +75,7 @@
     chdir: "{{ dotfiles_path }}/vim/colors/"
   register: vimcolorfiles
   always_run: yes
+  changed_when: "vimcolorfiles.rc != 0"
 
 - name: link color files
   file:
@@ -86,6 +90,7 @@
     chdir: "{{ dotfiles_path }}/config/htop/"
   register: htopfiles
   always_run: yes
+  changed_when: "htopfiles.rc != 0"
 
 - name: symlink htop files
   # htop_prefix varies from os family to family, namely darwin
@@ -111,3 +116,5 @@
 - name: reset .bash_env base file
   template: src=env.j2 dest={{ ansible_env.HOME }}/.bash_env
   when: not bash_env_file.stat.exists
+
+

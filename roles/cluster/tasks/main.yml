@@ -1,0 +1,12 @@
+---
+- name: check for existing ~/.env file
+  stat: path={{ ansible_env.HOME }}/.env follow=true
+  register: env_file
+
+- name: enable gaussian
+  lineinfile: dest={{ ansible_env.HOME }}/.env
+    line="g09root=/share/apps ;
+      GAUSS_SCRDIR=/scratch/$USER/gaussian_scratch ;
+      export g09root GAUSS_SCRDIR ;
+      source $g09root/g09/bsd/g09.profile"
+  when: env_file.stat.exists

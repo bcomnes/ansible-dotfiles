@@ -8,9 +8,6 @@ bret-mbr.local
 [psu]
 odin.pdx.edu
 
-[arc-web]
-rc.pdx.edu
-
 [arc-macs]
 host-135-42.dhcp.pdx.edu
 # arc-mac-03
@@ -18,16 +15,20 @@ host-135-42.dhcp.pdx.edu
 # hostname host-135-53.dhcp.pdx.edu
 
 [arc-compute]
-circe.rc.pdx.edu
-hecate.rc.pdx.edu
+rc.pdx.edu
+#circe.pdx.edu
+#hecate.rc.pdx.edu
 
 [arc-cluster]
 gravel.rc.pdx.edu
 hydra.rc.pdx.edu
 
 [arc:children]
-arc-web
 arc-macs
+arc-compute
+arc-cluster
+
+[arc-servers:children]
 arc-compute
 arc-cluster
 

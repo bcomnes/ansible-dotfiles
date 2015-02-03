@@ -1,0 +1,12 @@
+---
+- hosts: arc
+  roles:
+    - role: dotfiles
+
+- hosts: arc-servers
+  roles:
+    - role: compute
+
+- hosts: arc-cluster
+  roles:
+    - role: cluster
