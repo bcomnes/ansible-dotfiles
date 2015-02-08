@@ -9,8 +9,8 @@ bret-mbr.local
 odin.pdx.edu
 
 [arc-macs]
-host-135-42.dhcp.pdx.edu
 # arc-mac-03
+host-135-42.dhcp.pdx.edu
 # arc-mac-04
 # hostname host-135-53.dhcp.pdx.edu
 
