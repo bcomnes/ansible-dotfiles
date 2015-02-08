@@ -50,6 +50,7 @@
     dest="{{ ansible_env.HOME }}/.ssh/{{ item | basename }}"
     state=link
     force=true
+    mode=0600
   with_items: sshfiles.stdout_lines
 
 - name: generate authorized_keys
