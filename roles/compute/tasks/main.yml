@@ -19,3 +19,10 @@
   lineinfile: dest={{ ansible_env.HOME }}/.env
     line="#module load mpich2-x86_64"
   when: env_file.stat.exists
+
+- name: enable pyenv
+  lineinfile: dest={{ ansible_env.HOME }}/.env
+    line='export PYENV_ROOT=/vol/apps/system/python/pyenv ;
+      export PATH=$PYENV_ROOT/bin:$PATH ;
+      eval "$(pyenv init -)";
+    '

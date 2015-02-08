@@ -11,8 +11,11 @@
   git:
     repo=git@github.com:bcomnes/dotfiles.git
     dest={{ dotfiles_path }}
-    update=no
+    update=yes
     accept_hostkey=yes
+    force=no
+    executable={{ git_exe | default(omit) }}
+  register: dotfiles_repo
     # TODO: set update to no, and clone to true in 1.9
 
 - name: list dotfiles
