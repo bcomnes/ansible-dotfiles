@@ -26,9 +26,6 @@
   always_run: yes
   changed_when: "dotfiles.rc != 0"
 
-- debug: var=dotfiles.stdout_lines
-
-- debug: var=dotfiles_path
 - name: symlink dotfiles
   file:
     src={{ item }}
