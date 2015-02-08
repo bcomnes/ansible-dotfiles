@@ -88,6 +88,20 @@
     state=link
   with_items: vimcolorfiles.stdout_lines
 
+- name: set up vundle repo
+  git:
+    repo=git@github.com:gmarik/Vundle.vim.git
+    dest={{ ansible_env.HOME }}/.vim/bundle/Vundle.vim
+    update=yes
+    accept_hostkey=yes
+    force=no
+    executable={{ git_exe | default(omit) }}
+  register: vundle
+
+- name: install plugins
+  command: vim +PluginInstall +qall
+  when: vundle.changed or dotfiles_repo.changed
+
 - name: list htopfiles
   shell: "find $PWD -maxdepth 1 -type f"
   args:
