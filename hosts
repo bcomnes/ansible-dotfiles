@@ -15,8 +15,8 @@ host-135-42.dhcp.pdx.edu
 # hostname host-135-53.dhcp.pdx.edu
 
 [arc-compute]
-rc.pdx.edu
-#circe.pdx.edu
+#rc.pdx.edu
+circe.rc.pdx.edu
 #hecate.rc.pdx.edu
 
 [arc-cluster]
