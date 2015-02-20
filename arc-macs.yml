@@ -4,3 +4,4 @@
   roles:
     - { role: dotfiles, tags: ["dotfiles"] }
     - { role: brew, tags: ["brew"] }
+    - sublime

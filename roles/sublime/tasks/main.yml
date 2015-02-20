@@ -9,7 +9,7 @@
   git:
     repo=git@github.com:bcomnes/sublime-text-settings.git
     dest="{{ ansible_env.HOME }}/Library/Application Support/Sublime Text 3"
-    update=no
+    update=yes
     accept_hostkey=yes
     # TODO: set update to no, and clone to true in 1.9
 
