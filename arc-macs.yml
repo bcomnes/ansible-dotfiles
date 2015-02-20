@@ -5,3 +5,4 @@
     - { role: dotfiles, tags: ["dotfiles"] }
     - { role: brew, tags: ["brew"] }
     - sublime
+    - osx-apps

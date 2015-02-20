@@ -1,0 +1,19 @@
+---
+cask_apps:
+  - 1password
+  - appcleaner
+  - rowanj-gitx
+  - bittorrent-sync
+  - daisydisk
+  - flux
+  - iterm2
+  - imageoptim
+  - jumpcut
+  - moom
+  - mou
+  - nicecast
+  - omniplan
+  - omnioutliner
+  - omnigraffle
+  - textmate
+  - transmit

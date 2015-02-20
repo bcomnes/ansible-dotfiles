@@ -11,6 +11,7 @@
     dest="{{ ansible_env.HOME }}/Library/Application Support/Sublime Text 3"
     update=yes
     accept_hostkey=yes
+    force=no
     # TODO: set update to no, and clone to true in 1.9
 
 - name: install package control

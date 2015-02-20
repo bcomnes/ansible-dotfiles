@@ -38,6 +38,13 @@
   stat: path={{ ansible_env.HOME }}/.env follow=true
   register: env_file
 
+- name: Put homebrew in front of path
+  lineinfile: dest={{ ansible_env.HOME }}/.env
+    line="if hash brew 2>/dev/null; then
+        export PATH=$(brew --prefix)/bin:$PATH ;
+      fi"
+  when: env_file.stat.exists and ansible_distribution == "MacOSX" and {{ ansible_distribution_version | version_compare('10.9.5', '<=') }}
+
 - name: install ruby
   homebrew:
     name=ruby
@@ -92,13 +99,15 @@
     - dotfiles
   when: env_file.stat.exists
 
-- name: install bash_completion
+- name: install bash_completion2
   homebrew:
     name=bash-completion2
     state=present
+  when: False
 
-- name: enable bash_completion
+- name: enable bash_completion2
   lineinfile: dest={{ ansible_env.HOME }}/.bash_env
     line="if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
       . $(brew --prefix)/share/bash-completion/bash_completion ;
       fi"
+  when: False
