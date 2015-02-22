@@ -20,7 +20,7 @@ facts:
 	ansible all -i hosts -m setup -c local
 
 arc:
-	ansible-playbook -i hosts arc-macs.yml --ask-sudo-pass
+	ansible-playbook -i hosts arc-macs.yml -c local
 
 compute:
 	ansible-playbook -i hosts arc-compute.yml
