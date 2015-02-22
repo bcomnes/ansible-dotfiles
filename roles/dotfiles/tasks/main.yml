@@ -46,7 +46,7 @@
     dest="{{ ansible_env.HOME }}/.ssh/{{ item | basename }}"
     state=link
     force=true
-    mode=0600
+    mode="{{'0700' if item|basename == 'rc' else '0600'}}"
   with_items: sshfiles.stdout_lines
 
 - name: generate authorized_keys
