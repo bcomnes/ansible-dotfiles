@@ -1,9 +1,15 @@
 [local]
-bret-mbr.local ansible_connection=local  foo=bar
+bret-mbr.local ansible_connection=local
 
-[personal]
+[personal-osx]
 bret-mbr.local
-#bret-win7.local
+
+[personal-windows]
+bret-win8.local
+
+[personal:children]
+personal-windows
+personal-osx
 
 [psu]
 odin.pdx.edu
@@ -12,7 +18,7 @@ odin.pdx.edu
 # arc-mac-03
 host-135-42.dhcp.pdx.edu
 # arc-mac-04
-# hostname host-135-53.dhcp.pdx.edu
+#host-135-53.dhcp.pdx.edu
 
 [arc-compute]
 #rc.pdx.edu

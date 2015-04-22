@@ -27,3 +27,10 @@ compute:
 
 check-compute:
 	ansible-playbook -i hosts arc-compute.yml --check --diff
+
+check-win:
+	ansible-playbook -i  hosts windows.yml --check --diff
+
+win:
+	ansible-playbook -i hosts windows.yml
+

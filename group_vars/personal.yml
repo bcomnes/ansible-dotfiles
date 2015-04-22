@@ -51,3 +51,32 @@ cask_apps:
   - virtualbox
   - vagrant
   - jumpcut
+
+choco_apps:
+  - 7zip
+  - firefox
+  - google-chrome-x64
+  - sublimetext3
+  - 1password
+  - dropbox
+  - btsync
+  - ResophNotes
+  - nodejs.install
+  - git
+  - tortoisegit
+  - steam
+  - mirc
+  - procexp
+  - windirstat
+  - sumatrapdf.install
+  - vlc
+  - flashplayerplugin
+  - golang
+  - ruby
+  - python
+  - winscp
+  - f.lux
+  - aida64-engineer
+  - cccp
+  - battle.net
+  - visualstudioexpress2013windowsdesktop

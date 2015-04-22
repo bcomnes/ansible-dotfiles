@@ -27,7 +27,7 @@
     name={{ item }}
     state=present
   with_items:
-    - brew-cask
+    - cask
     - git
     - node
     - python
