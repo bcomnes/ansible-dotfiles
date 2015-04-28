@@ -1,0 +1,8 @@
+---
+- hosts: ua
+  gather_facts: true
+  roles:
+    - { role: dotfiles, tags: ["dotfiles"] }
+    - { role: brew, tags: ["brew"] }
+    - { role: sublime, tags: ["dotfiles"]}
+    - { role: osx-apps }

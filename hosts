@@ -14,6 +14,9 @@ personal-osx
 [psu]
 odin.pdx.edu
 
+[ua]
+bret-ua.local ansible_connection=local
+
 [arc-macs]
 # arc-mac-03
 host-135-42.dhcp.pdx.edu
