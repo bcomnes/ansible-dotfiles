@@ -21,3 +21,7 @@ cask_apps:
   - the-unarchiver
   - moom
   - firefox
+  - android-studio
+  - tunnelblick
+  - viscosity
+  - textexpander
