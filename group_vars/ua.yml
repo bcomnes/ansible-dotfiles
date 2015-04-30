@@ -27,3 +27,5 @@ cask_apps:
   - textexpander
   - magicprefs
   - licecap
+  - charles
+  - atom
