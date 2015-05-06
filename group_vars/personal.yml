@@ -46,6 +46,7 @@ cask_apps:
   - keepassx
   - kismac
   - screenflow
+  - resolutionator
   # Requires Sudo
   - xquartz
   - virtualbox

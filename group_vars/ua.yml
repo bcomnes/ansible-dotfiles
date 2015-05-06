@@ -29,3 +29,13 @@ cask_apps:
   - licecap
   - charles
   - atom
+  - vlc
+  - steam
+  - resolutionator
+  - omnioutliner
+  - omnigraffle
+  - java
+  - flash
+  - box-sync
+  - virtualbox
+  - vagrant
