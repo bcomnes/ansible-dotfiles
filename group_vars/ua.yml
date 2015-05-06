@@ -37,5 +37,6 @@ cask_apps:
   - java
   - flash
   - box-sync
+  # requires sudo
   - virtualbox
   - vagrant
