@@ -33,6 +33,7 @@
     - python
     - python3
     - vim
+    - git-lfs
 
 - name: check for existing ~/.env file
   stat: path={{ ansible_env.HOME }}/.env follow=true
