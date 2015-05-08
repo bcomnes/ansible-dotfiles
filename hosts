@@ -1,3 +1,4 @@
+####### personal #######
 [local]
 bret-mbr.local ansible_connection=local
 
@@ -14,14 +15,26 @@ personal-osx
 [psu]
 odin.pdx.edu
 
-[ua]
+####### UA #######
+
+[ua-mac]
 bret-ua.local ansible_connection=local
+
+[ua-hosts]
+bastion.prod.urbanairship.com
+admin-1.prod.urbanairship.com
+
+[ua:children]
+ua-mac
+ua-hosts
+
+####### PSU:OIT:ARC #######
 
 [arc-macs]
 # arc-mac-03
 host-135-42.dhcp.pdx.edu
 # arc-mac-04
-#host-135-53.dhcp.pdx.edu
+host-135-53.dhcp.pdx.edu
 
 [arc-compute]
 #rc.pdx.edu
