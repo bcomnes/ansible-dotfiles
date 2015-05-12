@@ -35,7 +35,7 @@ win:
 	ansible-playbook -i hosts windows.yml
 
 check-ua:
-	ansible-playbook -i  hosts ua.yml --check --diff
+	ansible-playbook -i  hosts ua.yml --check --diff -c local
 
 install-ua:
 	ansible-playbook -i hosts ua.yml

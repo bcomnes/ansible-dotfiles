@@ -16,7 +16,7 @@
   when: not gitenv_file.stat.exists
 
 - name: check version of git
-  shell: 'git --version |grep -Po "\d"'
+  shell: git --version | grep -o [[:digit:]]
   always_run: yes
   register: git_version
   changed_when: "git_version.rc != 0"
