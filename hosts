@@ -22,7 +22,7 @@ bret-ua.local ansible_connection=local
 
 [ua-hosts]
 bastion.prod.urbanairship.com
-admin-1.prod.urbanairship.com
+#admin-1.prod.urbanairship.com
 
 [ua:children]
 ua-mac

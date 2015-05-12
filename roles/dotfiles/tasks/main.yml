@@ -7,6 +7,29 @@
     - "{{ ansible_os_family }}.yml"
     - "default.yml"
 
+- name: check for existing ~/.gitenv file
+  stat: path={{ ansible_env.HOME }}/.gitenv follow=true
+  register: gitenv_file
+
+- name: reset .gitenv base file
+  template: src=env.j2 dest={{ ansible_env.HOME }}/.gitenv
+  when: not gitenv_file.stat.exists
+
+- name: check version of git
+  shell: 'git --version |grep -Po "\d"'
+  always_run: yes
+  register: git_version
+  changed_when: "git_version.rc != 0"
+
+- name: configure git
+  lineinfile: dest={{ ansible_env.HOME }}/.gitenv
+    line="[push]
+      default = simple"
+  tags:
+    - dotfiles
+  when: gitenv_file.stat.exists and git_version.stdout_lines[0]|int > 1
+
+
 - name: ensure ~/.dotfiles repo exists
   git:
     repo=git@github.com:bcomnes/dotfiles.git
@@ -56,7 +79,7 @@
   with_file:
     - ./bret-mbr.local.pub
     - ./bret-win7.local.pub
-    - ./arc-mac-04.local.pub
+    - ./bret-ua.local.pub
 
 - name: ensure .vim directories exists
   file:
@@ -98,6 +121,11 @@
   command: vim +PluginInstall +qall
   when: vundle.changed or dotfiles_repo.changed
 
+- name: ensure ~/.config directories
+  file:
+    path={{ ansible_env.HOME }}/.config
+    state=directory
+
 - name: list htopfiles
   shell: "find $PWD -maxdepth 1 -type f"
   args:
@@ -105,6 +133,11 @@
   register: htopfiles
   always_run: yes
   changed_when: "htopfiles.rc != 0"
+
+- name: ensure ~/.config/htop directory
+  file:
+    path={{ ansible_env.HOME }}/{{ htoprc_prefix }}
+    state=directory
 
 - name: symlink htop files
   # htop_prefix varies from os family to family, namely darwin
@@ -130,5 +163,4 @@
 - name: reset .bash_env base file
   template: src=env.j2 dest={{ ansible_env.HOME }}/.bash_env
   when: not bash_env_file.stat.exists
-
 
